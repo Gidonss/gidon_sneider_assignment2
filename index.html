@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -33,7 +34,7 @@
 <body>
 
   <div class="page">
-
+    
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-1">
@@ -48,17 +49,17 @@
     <div class="pure-g">
       <div class="pure-u-1-2">
         <div class="description-left">
-          <h2>Two Columns Layout</h2>
-          <p>Descriptor #1</p>
+          <h2>Population Spread - Choropleth Map</h2>
+          <p>The <b>choropleth map</b> below highlights the population density of world countries in <b>2020</b>.</p>
         </div>
       </div>
       <div class="pure-u-1-2">
-        <div class="pure-u-1-2">
+        
             <div class="description-right">
-              <h2>Two Columns Layout</h2>
-              <p>Descriptor #2</p>
+              <h2>Median Age - Stacked Bar Chart</h2>
+              <p>The stacked bar chart below can be utilised to analyse the <b>median age</b> of various countries by adjusting the maximum and minimum parameters.</p>
             </div>
-          </div>
+          
       </div>
     </div>
     <!-- end pure grid group  <div id="vis1" class="vis-container"></div> -->
@@ -82,38 +83,60 @@
 
     <!-- pure grid group -->
     <div class="pure-g">
-      <div class="pure-u-2-3">
-        <div id="vis2" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-3">
-        <div class="description description-right">
-          <h2>First and Second Columns Combined</h2>
-          <p>The first and second columns are combined. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien
-            faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
+      <div class="pure-u-1-2">
+        <div class="description-left">
+          <h2>Population Change - Bubble Chart</h2>
+          <p>The bubble chart below highlights the population change for various countries in 2020.</p>
         </div>
       </div>
-
-    </div>
-    <!-- end pure grid group -->
-
-    <div class="pure-g">
-      <div class="pure-u-1-1 small-font">
-        <p>This visualisation is created by <a href="https://fit3179.github.io/Vega-Lite/" target="_blank">FIT3179
-            Teaching Team</a>. The datasource is <a href="#" target=" _blank">some data repository online</href>.</p>
+      <div class="pure-u-1-2">
+        
+            <div class="description-right">
+              <h2>Two Columns Layout</h2>
+              <p>Descriptor #2</p>
+        
+          </div>
       </div>
     </div>
+    <!-- end pure grid group  <div id="vis1" class="vis-container"></div> -->
+    
 
-
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <element id="scatter_plot">
+          <div id="vis3" class="vis-container"></div>
+      
+        </element>
+      </div>
+      <div class="pure-g">
+        <div class="pure-u-1-2">
+          <div id="vis4" class="vis-container"></div>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    <!-- end pure grid group  <div id="vis1" class="vis-container"></div> -->
+    
   </div> <!-- end page -->
 
   <script type="text/javascript">
-    var specVis1 = "./stackedarea.json";
+    var specVis3 = "./stackedarea.json";
     var specVis2 = "./bubble.json";
+    var specVis1 = "./map.json";
+    var specVis4 = "./stackedarea_fertilityrate.json";
 
     vegaEmbed('#vis1', specVis1, { "actions": false });
 
-    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+    vegaEmbed('#vis2', specVis3, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis3', specVis2, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+
+    vegaEmbed('#vis4', specVis4, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 
