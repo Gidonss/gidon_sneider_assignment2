@@ -1,0 +1,24 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A bubbleplot showing horsepower on x, miles per gallons on y, and binned acceleration on size.",
+    "width": 500,"height": 300,
+    "data": {"url": "pop_worldometer_data.csv"},
+    "mark": "point",
+    
+    "encoding": {
+      "color": {"field": "Country","legend":null},
+      "x": {"field": "NetChange", "title": "Net Change", "type": "quantitative"},
+      "y": {"field": "Migrants", "type": "quantitative"},
+      "size": {"field": "Population", "type": "quantitative"},
+      "tooltip": [
+        {"field": "Country", "type": "nominal"},
+        {"field": "NetChange", "title": "Net Change", "type": "quantitative", "format": ","},
+        {"field": "Migrants", "type": "quantitative", "format": ","},
+        {"field": "Population", "type": "quantitative", "format": ","}
+      ]
+      
+      
+    
+    }
+  }
+  

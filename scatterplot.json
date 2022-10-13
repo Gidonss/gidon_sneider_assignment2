@@ -1,0 +1,193 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 100,
+  "height": 100,
+  "title": "COVID-19 Cases per Country (13 Oct 2020)",
+  "data": {
+    "url": "pop_worldometer_data.csv.csv"
+  },
+  "params": [
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100000000,
+        "step": 1000000,
+        "name": "Minimum Population: "
+      }
+    },
+    {
+      "name": "Country",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "China",
+          "India",
+          "United States",
+          "Indonesia",
+          "Pakistan",
+          "Brazil",
+          "Nigeria",
+          "Bangladesh",
+          "Russia",
+          "Mexico",
+          "Japan",
+          "Ethiopia",
+          "Philippines",
+          "Egypt",
+          "Vietnam",
+          "DR Congo",
+          "Turkey",
+          "Iran",
+          "Germany"
+
+        ],
+        "labels": [
+          "Show All",
+          "China",
+          "India",
+          "United States",
+          "Indonesia",
+          "Pakistan",
+          "Brazil",
+          "Nigeria",
+          "Bangladesh",
+          "Russia",
+          "Mexico",
+          "Japan",
+          "Ethiopia",
+          "Philippines",
+          "Egypt",
+          "Vietnam",
+          "DR Congo",
+          "Turkey",
+          "Iran",
+          "Germany"
+        ],
+        "name": "Country_Selection: "
+      }
+    }
+  ],
+  "transform": [
+
+    {"filter": "datum.Population > Population_Above"},
+    {
+      "filter": "Country_Selection == null || datum.Coutry == Country_Selection"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Land_Area",
+      "type": "quantitative",
+      "title": "Land Area",
+      "axis": {"tickCount": 7},
+      "scale": {"type": "log", "domain": [1, 10000000]}
+    },
+    "y": {
+      "field": "Density",
+      "type": "quantitative",
+      "axis": {"tickCount": 6}
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "Population",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1000000, 10000000, 50000000, 100000000, 500000000],
+            "range": [10, 50, 150, 200, 300, 400]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "Country_Selection",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "China",
+              "India",
+              "United States",
+              "Indonesia",
+              "Pakistan",
+              "Brazil",
+              "Nigeria",
+              "Bangladesh",
+              "Russia",
+              "Mexico",
+              "Japan",
+              "Ethiopia",
+              "Philippines",
+              "Egypt",
+              "Vietnam",
+              "DR Congo",
+              "Turkey",
+              "Iran",
+              "Germany"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628",
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628",
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628",
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {"value": 0.6},
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Land_Area", "type": "quantitative", "format": ","},
+          {"field": "Density", "type": "quantitative", "format": ","},
+          {"field": "Population", "type": "quantitative", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "black"},
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Land_Area", "type": "quantitative", "format": ","},
+          {"field": "Density", "type": "quantitative", "format": ","},
+          {"field": "Population", "type": "quantitative", "format": ","}
+
+        ]
+      }
+    }
+  ]
+}

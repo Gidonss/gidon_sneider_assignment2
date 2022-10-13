@@ -1,0 +1,70 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Vega-Lite version of bar chart from https://observablehq.com/@d3/learn-d3-scales.",
+    "width": 500,"height": 300,
+    "data": {"url": "pop_worldometer_data.csv"},
+    "params": [
+        {
+          "name": "Med_age_above",
+          "value": 45,
+          "bind": {
+            "input": "range",
+            "min": 15,
+            "max": 48,
+            "step": 1,
+            "name": "Minimum Median Age: "
+          }
+        },
+        {
+            "name": "Med_age_below",
+            "value": 49,
+            "bind": {
+              "input": "range",
+              "min": 15,
+              "max": 48,
+              "step": 1,
+              "name": "Maximum Median Age: "
+            }
+          }
+    ],
+    "transform": [
+
+        {"filter": "datum.Med_Age > Med_age_above"},
+        {"filter": "datum.Med_Age < Med_age_below"}
+
+      ],
+    "encoding": {
+      "y": {"field": "Country", "type": "nominal", "sort": "-x", "title": null},
+      "x": {"field": "Med_Age", "type": "quantitative", "title": null}
+    },
+    "layer": [{
+      "mark": "bar",
+      "encoding": {
+        "color": {
+          "field": "Med_Age",
+          "type": "quantitative",
+          "title": "Median Age"
+        }
+      }
+    },
+    {
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "xOffset": -4,
+          "aria": false
+        },
+        "encoding": {
+          "text": {"field": "Med_Age", "type": "quantitative"},
+          "color": {
+            "condition": {
+              "test": {"field": "Med_Age", "gt": 10},
+              "value": "white"
+            },
+            "value": "black"
+          }
+          
+        }
+      }]
+}
+  

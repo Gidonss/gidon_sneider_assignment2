@@ -1,0 +1,69 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Vega-Lite version of bar chart from https://observablehq.com/@d3/learn-d3-scales.",
+    "width": 500,"height": 300,
+    "data": {"url": "pop_worldometer_data.csv"},
+    "params": [
+        {
+          "name": "fertility_rate_above",
+          "value": 5,
+          "bind": {
+            "input": "range",
+            "min": 0,
+            "max": 7,
+            "step": 0.5,
+            "name": "Minimum Fertility Rate: "
+          }
+        },
+        {
+            "name": "fertility_rate_below",
+            "value": 7,
+            "bind": {
+              "input": "range",
+              "min": 0,
+              "max": 7,
+              "step": 0.5,
+              "name": "Maximum Fertility Rate: "
+            }
+          }
+    ],
+    "transform": [
+
+        {"filter": "datum.Fert_Rate > fertility_rate_above"},
+        {"filter": "datum.Fert_Rate < fertility_rate_below"}
+
+      ],
+    "encoding": {
+      "y": {"field": "Country", "type": "nominal", "sort": "-x", "title": null},
+      "x": {"field": "Fert_Rate", "type": "quantitative", "title": null}
+    },
+    "layer": [{
+      "mark": "bar",
+      "encoding": {
+        "color": {
+          "field": "Fert_Rate",
+          "type": "quantitative",
+          "title": "Fertility Rate"
+        }
+      }
+    },
+    {
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "xOffset": -4,
+          "aria": false
+        },
+        "encoding": {
+          "text": {"field": "Fert_Rate", "type": "quantitative"},
+          "color": {
+            "condition": {
+              "test": {"field": "Fert_Rate", "gt": 10},
+              "value": "white"
+            },
+            "value": "black"
+          }
+          
+        }
+      }]
+}
