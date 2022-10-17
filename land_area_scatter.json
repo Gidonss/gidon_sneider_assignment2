@@ -1,0 +1,24 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A bubbleplot showing horsepower on x, miles per gallons on y, and binned acceleration on size.",
+    "width": 600,"height": 300,
+    "data": {"url": "pop_worldometer_data.csv"},
+    "mark": "point",
+    
+    "encoding": {
+      "color": {"field": "Country","legend":null},
+      "y": {"field": "Land_Area", "title": "Land Area (km^2)", "type": "quantitative"},
+      "x": {"field": "Urban_Pop", "title": "Urban Population (%)", "type": "quantitative"},
+      "size": {"field": "Land_Area", "type": "quantitative"},
+      "tooltip": [
+        {"field": "Country", "type": "nominal"},
+        {"field": "Land_Area", "title": "Land Area", "type": "quantitative", "format": ","},
+        {"field": "Density", "type": "quantitative", "format": ","},
+        {"field": "Urban_Pop", "title": "Urban Population (%)", "type": "quantitative", "format": ","}
+      ]
+      
+      
+    
+    }
+  }
+  

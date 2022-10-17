@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "description": "Vega-Lite version of bar chart from https://observablehq.com/@d3/learn-d3-scales.",
-    "width": 500,"height": 300,
+    "width": 600,"height": 300,
     "data": {"url": "pop_worldometer_data.csv"},
     "params": [
         {
@@ -9,28 +9,17 @@
           "value": 5,
           "bind": {
             "input": "range",
-            "min": 0,
-            "max": 7,
+            "min": 1,
+            "max": 6,
             "step": 0.5,
             "name": "Minimum Fertility Rate: "
           }
-        },
-        {
-            "name": "fertility_rate_below",
-            "value": 7,
-            "bind": {
-              "input": "range",
-              "min": 0,
-              "max": 7,
-              "step": 0.5,
-              "name": "Maximum Fertility Rate: "
-            }
-          }
+        }
     ],
     "transform": [
 
         {"filter": "datum.Fert_Rate > fertility_rate_above"},
-        {"filter": "datum.Fert_Rate < fertility_rate_below"}
+        {"filter": "datum.Fert_Rate < fertility_rate_above+0.5"}
 
       ],
     "encoding": {

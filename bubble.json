@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "description": "A bubbleplot showing horsepower on x, miles per gallons on y, and binned acceleration on size.",
-    "width": 500,"height": 300,
+    "width": 600,"height": 300,
     "data": {"url": "pop_worldometer_data.csv"},
     "mark": "point",
     
